@@ -10,11 +10,33 @@ public class PetSelector{
         //make a decision
         //tell the user what they get!
         Scanner scanner = new Scanner(System.in);
+        String color;
+        String season;
+        String name;
+        String pet;
+
         do {
             System.out.println("Enter your favorite color (Either red, blue or green):");
-            String color = scanner.nextLine();
-        } while ("red".indexOf(color.substring(0, color.length() + 1).toLowerCase()) <= -1 | "blue".indexOf(color.substring(0, color.length() + 1).toLowerCase() <= -1 | "green".indexOf(color.substring(0, color.length() + 1).toLowerCase() <= -1)));
+            color = scanner.nextLine().toLowerCase();
+        } while (!(color.equals("red")) && !(color.equals("blue")) && !(color.equals("green")));
         
+        do {
+            System.out.println("Enter your favorite season (winter, spring, summer, fall):");
+            season = scanner.nextLine().toLowerCase();
+        } while (!(season.equals("winter")) && !(season.equals("spring")) && !(season.equals("summer")) && !(season.equals("fall")));
+
+        do {
+            System.out.println("Enter your name:");
+            name = scanner.nextLine();
+        } while (!("abcdefghijklmnopqrstuvwxyz".indexOf(name.substring(0,1).toLowerCase()) >= 0));
+
+        if (color == "blue" && !(name.substring(0,1) == "a" || name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u") {
+            if (season == "fall") {
+                pet = "alligator";
+            } else if (season == "spring") {
+                pet = "ostrich";
+            }
+        }
 
     }
 
