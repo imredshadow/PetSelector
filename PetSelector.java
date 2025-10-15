@@ -30,13 +30,34 @@ public class PetSelector{
             name = scanner.nextLine();
         } while (!("abcdefghijklmnopqrstuvwxyz".indexOf(name.substring(0,1).toLowerCase()) >= 0));
 
-        if (color == "blue" && !(name.substring(0,1) == "a" || name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u") {
+        if (color == "blue" && !((name.substring(0,1) == "a" || name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u")) {
             if (season == "fall") {
                 pet = "alligator";
             } else if (season == "spring") {
                 pet = "ostrich";
+            } else if (season == "summer") {
+                pet = "axolotl";
+            }
+        } else if (color == "red") {
+            if (name.substring(0,1) == "a" || (name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u") {
+                pet = "porcupine";
+            } else {
+                pet = "panda";
+            }
+        } else if (color == "green") {
+            if (season == "winter" && color == "blue" && !((name.substring(0,1) == "a" || name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u")) {
+                pet = "giraffe";
+            } else if (season != "fall") {
+                pet = "dog";
+            }
+        } else {
+            pet = "rock";
+            if (pet == "rock" && season == "summer") {
+                pet = "pony";
             }
         }
+        System.out.println();
+        
 
     }
 
