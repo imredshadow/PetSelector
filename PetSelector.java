@@ -1,67 +1,70 @@
-//Name: Jian Acol
-//PD: 7
-//Description: Will return with a pet that is based on your inputs
+// Name: Jian Acol
+// PD: 7
+// Description: Will return with a pet that is based on your inputs
 
 import java.util.*;
-public class PetSelector{
-    public static void main(String [] args){
-        //ask the user for input (name, season, and color)
-        //make sure the input is valid (idiot proof!)
-        //make a decision
-        //tell the user what they get!
+
+public class PetSelector {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String color;
         String season;
         String name;
-        String pet = null;
+        String pet = "";
 
+        // Ask for color
         do {
-            System.out.println("Enter your favorite color (Either red, blue or green):");
-            color = scanner.nextLine().toLowerCase();
-        } while (!(color.equals("red")) && !(color.equals("blue")) && !(color.equals("green")));
-        
+            System.out.println("Enter your favorite color (Either red, blue, or green):");
+            color = scanner.nextLine().trim().toLowerCase();
+        } while (!(color.equals("red") || color.equals("blue") || color.equals("green")));
+
+        // Ask for season
         do {
             System.out.println("Enter your favorite season (winter, spring, summer, fall):");
-            season = scanner.nextLine().toLowerCase();
-        } while (!(season.equals("winter")) && !(season.equals("spring")) && !(season.equals("summer")) && !(season.equals("fall")));
+            season = scanner.nextLine().trim().toLowerCase();
+        } while (!(season.equals("winter") || season.equals("spring") ||
+                   season.equals("summer") || season.equals("fall")));
 
+        // Ask for name
         do {
             System.out.println("Enter your name:");
-            name = scanner.nextLine();
-        } while (!("abcdefghijklmnopqrstuvwxyz".indexOf(name.substring(0,1).toLowerCase()) >= 0));
-        
-        boolean isVowel = (("aeiou".indexOf(name.charAt(0))) == 0);
-        if (color == "blue" && (isVowel == false)) {
+            name = scanner.nextLine().trim();
+        } while (name.length() == 0);
 
-            if (season == "fall") {
-                pet = "alligator";
-            } else if (season == "spring") {
-                pet = "ostrich";
-            } else if (season == "summer") {
-                pet = "axolotl";
-            }
-        } else if (color == "red") {
-            if (name.substring(0,1) == "a" || (name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u") {
+        char first = Character.toLowerCase(name.charAt(0));
+        boolean isVowel = "aeiou".indexOf(first) != -1;
+        boolean isConsonant = !isVowel;
+
+        // Decision logic
+        if (color.equals("blue") && season.equals("fall")) {
+            pet = "alligator";
+        } else if (color.equals("blue") && season.equals("spring")) {
+            pet = "ostrich";
+        } else if (color.equals("green") && isConsonant && season.equals("winter")) {
+            pet = "giraffe";
+        } else if (color.equals("green") && !season.equals("fall")) {
+            pet = "dog";
+        } else if (color.equals("red")) {
+            if (isVowel) {
                 pet = "porcupine";
             } else {
                 pet = "panda";
             }
-        } else if (color == "green") {
-            if (season == "winter" && color == "blue" && !((name.substring(0,1) == "a" || name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u")) {
-                pet = "giraffe";
-            } else if (season != "fall") {
-                pet = "dog";
-            }
-        } else {
-            pet = "rock";
-            if (pet == "rock" && season == "summer") {
+        } else if (season.equals("summer")) {
+            if (!(pet.equals("dog") || pet.equals("panda") || pet.equals("porcupine"))) {
                 pet = "pony";
             }
+        } else if (isConsonant && color.equals("blue") &&
+                   !(season.equals("summer") || season.equals("fall"))) {
+            pet = "axolotl";
         }
-        
+
+        // Default
+        if (pet.equals("")) {
+            pet = "rock";
+        }
+
         System.out.println("Your perfect pet is: " + pet);
-        
-
+        scanner.close();
     }
-
 }
