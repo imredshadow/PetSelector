@@ -13,7 +13,7 @@ public class PetSelector{
         String color;
         String season;
         String name;
-        String pet;
+        String pet = null;
 
         do {
             System.out.println("Enter your favorite color (Either red, blue or green):");
@@ -29,8 +29,10 @@ public class PetSelector{
             System.out.println("Enter your name:");
             name = scanner.nextLine();
         } while (!("abcdefghijklmnopqrstuvwxyz".indexOf(name.substring(0,1).toLowerCase()) >= 0));
+        
+        boolean isVowel = (("aeiou".indexOf(name.charAt(0))) == 0);
+        if (color == "blue" && (isVowel == false)) {
 
-        if (color == "blue" && !((name.substring(0,1) == "a" || name.substring(0,1) == "e") || name.substring(0,1) == "i" || name.substring(0,1) == "o" || name.substring(0,1) == "u")) {
             if (season == "fall") {
                 pet = "alligator";
             } else if (season == "spring") {
@@ -56,7 +58,8 @@ public class PetSelector{
                 pet = "pony";
             }
         }
-        System.out.println();
+        
+        System.out.println("Your perfect pet is: " + pet);
         
 
     }
