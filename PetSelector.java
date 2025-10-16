@@ -6,36 +6,40 @@ import java.util.*;
 
 public class PetSelector {
     public static void main(String[] args) {
+        // creates the scanner to read inputs in the terminal
         Scanner scanner = new Scanner(System.in);
+
+        //Creates the variables needed for the project
         String color;
         String season;
         String name;
         String pet = "";
 
-        // Ask for color
+        // Ask for color and keeps asking until it is a valid color
         do {
             System.out.println("Enter your favorite color (Either red, blue, or green):");
             color = scanner.nextLine().trim().toLowerCase();
         } while (!(color.equals("red") || color.equals("blue") || color.equals("green")));
 
-        // Ask for season
+        // Ask for season and keeps asking until it is a valid season
         do {
             System.out.println("Enter your favorite season (winter, spring, summer, fall):");
             season = scanner.nextLine().trim().toLowerCase();
         } while (!(season.equals("winter") || season.equals("spring") ||
                    season.equals("summer") || season.equals("fall")));
 
-        // Ask for name
+        // Ask for name and keeps asking until it is a valid name
         do {
             System.out.println("Enter your name:");
             name = scanner.nextLine().trim();
         } while (name.length() == 0);
 
+        //Checks for the first character of your name and see if it is a vowel or a consonant
         char first = Character.toLowerCase(name.charAt(0));
         boolean isVowel = "aeiou".indexOf(first) != -1;
         boolean isConsonant = !isVowel;
 
-        // Decision logic
+        // If statements that decide the perfect matching pet based on the rules by Vermin Supreme
         if (color.equals("blue") && season.equals("fall")) {
             pet = "alligator";
         } else if (color.equals("blue") && season.equals("spring")) {
@@ -59,12 +63,12 @@ public class PetSelector {
             pet = "axolotl";
         }
 
-        // Default
+        // If you don't match any of the if-else statements, they will give you the default pet rock
         if (pet.equals("")) {
             pet = "rock";
         }
 
+        // prints out your perfect pet
         System.out.println("Your perfect pet is: " + pet);
-        scanner.close();
     }
 }
